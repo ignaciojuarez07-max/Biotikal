@@ -40,33 +40,36 @@ $especies = $stmt->fetchAll();
 
             <div class="visor-especies">
                 <?php foreach ($especies as $index => $sp): 
-                    // Lógica "Todo Terreno" para detectar imágenes sueltas en la carpeta principal
+                    // Generamos las diferentes combinaciones de nombres
                     $cientifico = str_replace(' ', '_', $sp['nombre_cientifico']);
                     $minusculas = strtolower($cientifico);
-                    $mayuscula_inicial = ucfirst($minusculas); // Convierte a "Tyto_alba"
+                    $mayuscula = ucfirst($minusculas); 
 
-                    // Matriz de búsqueda intensiva (cubre todas tus variantes de GitHub)
-                    $posibles_fotos = [
-                        $minusculas . ".jpg", $minusculas . ".JPG", 
-                        $minusculas . ".png", $minusculas . ".PNG", 
-                        $minusculas . ".jpeg",
-                        $mayuscula_inicial . ".jpg", $mayuscula_inicial . ".JPG", 
-                        $mayuscula_inicial . ".png", $mayuscula_inicial . ".PNG", 
-                        $mayuscula_inicial . ".jpeg",
-                        $cientifico . ".jpg", $cientifico . ".png", $cientifico . ".PNG"
+                    // El "radar" ahora busca obligatoriamente DENTRO de "img/"
+                    $posibles_rutas = [
+                        "img/" . $minusculas . ".jpg", 
+                        "img/" . $minusculas . ".JPG", 
+                        "img/" . $minusculas . ".png", 
+                        "img/" . $minusculas . ".PNG", 
+                        "img/" . $mayuscula . ".jpg", 
+                        "img/" . $mayuscula . ".JPG", 
+                        "img/" . $mayuscula . ".png", 
+                        "img/" . $mayuscula . ".PNG", 
+                        "img/" . $cientifico . ".jpg", 
+                        "img/" . $cientifico . ".png"
                     ];
 
-                    $nombre_img = ""; // Vacío por si no existe ninguna
-                    foreach ($posibles_fotos as $foto) {
-                        if (file_exists($foto)) {
-                            $nombre_img = $foto;
-                            break; // Si la encuentra, detiene la búsqueda
+                    $ruta_final = ""; 
+                    foreach ($posibles_rutas as $ruta) {
+                        if (file_exists($ruta)) {
+                            $ruta_final = $ruta;
+                            break; 
                         }
                     }
                 ?>
                     <div class="tarjeta-especie <?php echo $index === 0 ? 'activa' : ''; ?>" id="especie-<?php echo $index; ?>">
                         <div class="col-imagen" onclick="abrirDetalles(<?php echo $index; ?>)">
-                            <img src="<?php echo $nombre_img; ?>" alt="<?php echo $sp['nombre_comun']; ?>" onerror="this.src='https://via.placeholder.com/600x450?text=Foto+en+Proceso'">
+                            <img src="<?php echo $ruta_final; ?>" alt="<?php echo $sp['nombre_comun']; ?>" onerror="this.src='https://via.placeholder.com/600x450?text=Foto+No+Encontrada'">
                             <div class="clic-overlay"><i class="fas fa-search-plus"></i> Ver más detalles</div>
                         </div>
                         
@@ -79,7 +82,7 @@ $especies = $stmt->fetchAll();
                             <p class="habitat-info"><strong>Hábitat:</strong> <?php echo $sp['habitat']; ?></p>
                             
                             <div id="data-tecnica-<?php echo $index; ?>" style="display:none;">
-                                <?php echo $sp['detalles_tecnicos'] ?: 'Información técnica en proceso de recolección...'; ?>
+                                <?php echo $sp['detalles_tecnicos'] ?: 'Información técnica en proceso...'; ?>
                             </div>
                         </div>
                     </div>
@@ -127,7 +130,6 @@ $especies = $stmt->fetchAll();
             document.getElementById('m-sub').innerHTML = sp.querySelector('.cientifico').innerHTML;
             document.getElementById('m-img').src = sp.querySelector('img').src;
             
-            // Renderizamos las etiquetas HTML
             document.getElementById('m-tecnico').innerHTML = document.getElementById(`data-tecnica-${idx}`).innerHTML;
             
             document.getElementById('modalDetalles').style.display = 'flex';
