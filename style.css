@@ -862,44 +862,54 @@ body {
 
 
 /* =========================================
-   DISEÑO MÓVIL (Pantallas menores a 768px)
+   DISEÑO MÓVIL EXACTO PARA BIOTIKAL
    ========================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. Apilar las tarjetas de animales/plantas en una sola columna */
-    .contenedor-fichas { /* <--- Cambia esto por la clase de tu cuadrícula */
-        display: grid;
-        grid-template-columns: 1fr; /* Una sola columna que ocupa el 100% */
-        gap: 20px;
-        padding: 15px;
+    /* 1. Fichas: Apilar imagen arriba y texto abajo */
+    .tarjeta-especie {
+        display: flex;
+        flex-direction: column; /* Cambia de lado-a-lado a arriba-abajo */
+        height: auto; 
+        padding: 10px;
+    }
+    
+    .col-imagen, .col-texto {
+        width: 100%; /* Que ocupen todo el ancho de la pantalla */
+        padding: 5px 0;
     }
 
-    /* 2. Ajustar las imágenes para que no se desborden ni se estiren */
-    img {
+    .col-imagen img {
         max-width: 100%;
         height: auto;
-        border-radius: 8px; /* Un toque sutil y elegante */
+        border-radius: 8px;
     }
 
-    /* 3. Hacer que el mapa de Petén se encoja y no rompa la pantalla */
-    .contenedor-mapa svg { /* <--- Cambia por la clase donde está tu mapa */
+    /* 2. Subcategorías: Menú en una sola columna limpia */
+    .grid-subcategorias {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* 3. Modal (Detalles extra): Evitar que se aplaste al abrirlo */
+    .modal-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .m-col-img, .m-col-data {
         width: 100%;
-        height: auto;
     }
 
-    /* 4. Darle aire a los contenedores principales para que no peguen a los bordes del teléfono */
-    .seccion-principal {
-        padding: 10px;
-        margin: 0;
-    }
-
-    /* 5. Ajustar el tamaño del texto para lectura cómoda en móvil */
-    h1 {
-        font-size: 24px;
+    /* 4. Ajustes generales de lectura */
+    .col-texto h2 {
+        font-size: 22px;
         text-align: center;
     }
-    p, li {
-        font-size: 16px;
-        line-height: 1.5;
+    
+    .carrusel-libro {
+        padding: 5px;
     }
 }
