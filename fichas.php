@@ -4,7 +4,6 @@ require_once 'conexion.php';
 $categoria = $_GET['categoria'] ?? 'mamiferos';
 $sub = $_GET['subdivision'] ?? '';
 
-// Traemos todos los animales de esa subcategoría
 $stmt = $pdo->prepare("SELECT * FROM $categoria WHERE subdivision = :sub ORDER BY nombre_comun");
 $stmt->execute(['sub' => $sub]);
 $especies = $stmt->fetchAll();
@@ -40,33 +39,24 @@ $especies = $stmt->fetchAll();
 
             <div class="visor-especies">
                 <?php foreach ($especies as $index => $sp): 
-                    // Generamos las combinaciones de nombres (mayúsculas y minúsculas)
                     $cientifico = str_replace(' ', '_', $sp['nombre_cientifico']);
                     $minusculas = strtolower($cientifico);
                     $mayuscula = ucfirst($minusculas); 
+                    $comun = str_replace(' ', '_', strtolower($sp['nombre_comun'])); // Por si se guardó con nombre común
 
-                    // El súper radar: busca DENTRO de img/ Y también AFUERA en la raíz
-                    $posibles_rutas = [
-                        // 1. Probar dentro de la carpeta "img"
-                        "img/" . $minusculas . ".jpg", "img/" . $minusculas . ".JPG", 
-                        "img/" . $minusculas . ".png", "img/" . $minusculas . ".PNG", 
-                        "img/" . $mayuscula . ".jpg", "img/" . $mayuscula . ".JPG", 
-                        "img/" . $mayuscula . ".png", "img/" . $mayuscula . ".PNG", 
-                        "img/" . $cientifico . ".jpg", "img/" . $cientifico . ".png", "img/" . $cientifico . ".PNG",
-
-                        // 2. Probar afuera (por si se quedaron en la carpeta principal)
-                        $minusculas . ".jpg", $minusculas . ".JPG", 
-                        $minusculas . ".png", $minusculas . ".PNG", 
-                        $mayuscula . ".jpg", $mayuscula . ".JPG", 
-                        $mayuscula . ".png", $mayuscula . ".PNG", 
-                        $cientifico . ".jpg", $cientifico . ".png", $cientifico . ".PNG"
-                    ];
+                    $extensiones = ["jpg", "JPG", "jpeg", "JPEG", "png", "PNG", "webp", "WEBP"];
+                    $directorios = ["img/", ""]; // Busca primero en img/ y luego en la raíz
 
                     $ruta_final = ""; 
-                    foreach ($posibles_rutas as $ruta) {
-                        if (file_exists($ruta)) {
-                            $ruta_final = $ruta;
-                            break; // En cuanto encuentre la foto en cualquier lado, se detiene
+                    foreach ($directorios as $dir) {
+                        foreach ($extensiones as $ext) {
+                            $opciones = [$dir.$cientifico, $dir.$minusculas, $dir.$mayuscula, $dir.$comun];
+                            foreach ($opciones as $ruta) {
+                                if (file_exists($ruta . "." . $ext)) {
+                                    $ruta_final = $ruta . "." . $ext;
+                                    break 3; // ¡Encontrada! Rompe los 3 ciclos
+                                }
+                            }
                         }
                     }
                 ?>
@@ -132,9 +122,7 @@ $especies = $stmt->fetchAll();
             document.getElementById('m-titulo').innerText = sp.querySelector('h2').innerText;
             document.getElementById('m-sub').innerHTML = sp.querySelector('.cientifico').innerHTML;
             document.getElementById('m-img').src = sp.querySelector('img').src;
-            
             document.getElementById('m-tecnico').innerHTML = document.getElementById(`data-tecnica-${idx}`).innerHTML;
-            
             document.getElementById('modalDetalles').style.display = 'flex';
         }
 
