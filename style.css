@@ -859,3 +859,47 @@ body {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); /* Sombra moderna y suave */
     border: 1px solid rgba(0, 0, 0, 0.03);
 }
+
+
+/* =========================================
+   DISEÑO MÓVIL (Pantallas menores a 768px)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Apilar las tarjetas de animales/plantas en una sola columna */
+    .contenedor-fichas { /* <--- Cambia esto por la clase de tu cuadrícula */
+        display: grid;
+        grid-template-columns: 1fr; /* Una sola columna que ocupa el 100% */
+        gap: 20px;
+        padding: 15px;
+    }
+
+    /* 2. Ajustar las imágenes para que no se desborden ni se estiren */
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px; /* Un toque sutil y elegante */
+    }
+
+    /* 3. Hacer que el mapa de Petén se encoja y no rompa la pantalla */
+    .contenedor-mapa svg { /* <--- Cambia por la clase donde está tu mapa */
+        width: 100%;
+        height: auto;
+    }
+
+    /* 4. Darle aire a los contenedores principales para que no peguen a los bordes del teléfono */
+    .seccion-principal {
+        padding: 10px;
+        margin: 0;
+    }
+
+    /* 5. Ajustar el tamaño del texto para lectura cómoda en móvil */
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+    p, li {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+}
