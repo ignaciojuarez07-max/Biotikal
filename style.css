@@ -1169,3 +1169,15 @@ video {
         height: 40px;
     }
 }
+
+@media (max-width:768px){
+
+    .carrusel-libro{
+        flex-direction:column;
+    }
+
+    .flecha-nav{
+        margin:5px;
+    }
+
+}
