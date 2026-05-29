@@ -1,15 +1,14 @@
 <?php
 // conexion.php
 
-$host = 'aws-0-us-east-1.pooler.supabase.com'; 
+// ¡AQUÍ ESTÁ EL CAMBIO! aws-1 en lugar de aws-0
+$host = 'aws-1-us-east-1.pooler.supabase.com'; 
 $dbname = 'postgres'; 
-// ¡ESTA ES LA LÍNEA CLAVE! El usuario completo:
 $username = 'postgres.koltwkcxjijbqvctovnn'; 
 $password = 'BioTikal2026'; 
 $port = '6543'; 
 
 try {
-    // Agregamos sslmode=require por seguridad extra en la nube
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
     $pdo = new PDO($dsn, $username, $password);
     
