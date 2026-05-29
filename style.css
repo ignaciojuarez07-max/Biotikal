@@ -1,0 +1,861 @@
+/* style.css */
+
+/* Variables de color temáticas y minimalistas */
+:root {
+    --verde-oscuro: #1A4D2E;
+    --verde-medio: #4F6F52;
+    --blanco-fondo: #FDFDFD;
+    --negro-texto: #111111;
+    --gris-texto: #555555;
+    --salmon-boton: #E59881; 
+}
+
+/* Reseteo básico para que quede limpio */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', 'Verdana', sans-serif;
+    background-color: var(--blanco-fondo);
+    color: var(--negro-texto);
+    line-height: 1.8;
+    scroll-behavior: smooth; /* Para que al darle a la flecha baje suavemente */
+}
+
+/* --- NUEVA BARRA DE NAVEGACIÓN (MENÚ) --- */
+.navbar-principal {
+    position: absolute; /* Hace que flote sobre la imagen de fondo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100; /* Asegura que el menú esté siempre encima de todo */
+}
+
+.logo-nav {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--blanco-fondo);
+    letter-spacing: 6px;
+}
+
+.enlaces-nav {
+    list-style: none; /* Quita las viñetas de la lista */
+    display: flex;
+    gap: 40px; /* Separación entre cada enlace */
+}
+
+.enlaces-nav a {
+    text-decoration: none;
+    color: var(--blanco-fondo);
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+/* Efecto al pasar el ratón o cuando estás en esa página */
+.enlaces-nav a:hover, 
+.enlaces-nav a.activo {
+    color: var(--salmon-boton);
+}
+
+/* --- SECCIÓN 1: BIENVENIDA (HERO) --- */
+.bienvenida {
+    height: 100vh;
+    width: 100%;
+    /* Aquí agregamos 'img/' para indicarle la ruta correcta */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/fondo_tikal.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--blanco-fondo);
+    position: relative; 
+}
+
+.bienvenida-box h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    letter-spacing: 15px; /* Da ese toque minimalista y amplio */
+    margin-bottom: 10px; 
+}
+
+/* Diseño de la nueva frase motivadora */
+.frase-motivadora {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 30px; 
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+/* Botón principal */
+.btn-explorar {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--salmon-boton);
+    color: var(--verde-oscuro);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-explorar:hover {
+    background-color: #fff;
+    color: var(--verde-oscuro);
+    transform: scale(1.05);
+}
+
+/* --- FLECHA ANIMADA HACIA ABAJO --- */
+.flecha-scroll {
+    position: absolute;
+    bottom: 30px;
+    color: var(--blanco-fondo);
+    font-size: 2rem;
+    text-decoration: none;
+    animation: rebotar 2s infinite; /* Llama a la animación de abajo */
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.flecha-scroll:hover {
+    opacity: 1;
+}
+
+/* Efecto de salto para la flecha */
+@keyframes rebotar {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* --- SECCIÓN 2: BREVE INTRODUCCIÓN --- */
+.introduccion {
+    padding: 100px 20px;
+    background-color: var(--blanco-fondo);
+}
+
+.contenedor-intro {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.introduccion h2 {
+    font-size: 2.5rem;
+    color: var(--verde-oscuro);
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+/* Línea decorativa verde debajo del título */
+.divisor {
+    width: 60px;
+    height: 3px;
+    background-color: var(--verde-medio);
+    margin: 20px auto 40px auto;
+}
+
+/* Texto de la introducción ya limpio */
+.introduccion p {
+    font-size: 1.15rem;
+    color: var(--gris-texto);
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.final-intro {
+    font-weight: bold;
+    color: var(--verde-oscuro);
+    text-align: center !important; 
+}
+
+/* --- FOOTER DE INICIO --- */
+.footer-inicio {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--blanco-fondo);
+    border-top: 1px solid #eee;
+    color: var(--gris-texto);
+    font-size: 0.9rem;
+}
+
+/* ========================================= */
+/* --- PANTALLA DE CATEGORÍAS (APARTADOS) -- */
+/* ========================================= */
+
+.pantalla-categorias {
+    min-height: 100vh;
+    padding: 80px 20px;
+    background-color: #F8FAF8; /* Un verde-gris casi blanco, muy limpio */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Barra superior para regresar */
+.nav-sencilla {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--blanco-fondo);
+    border-bottom: 1px solid #eaeaea;
+}
+
+.btn-regresar {
+    text-decoration: none;
+    color: var(--gris-texto);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.btn-regresar:hover {
+    color: var(--verde-oscuro);
+}
+
+.logo-pequeno {
+    font-weight: bold;
+    letter-spacing: 5px;
+    color: var(--verde-oscuro);
+}
+
+/* Títulos de esta sección */
+.encabezado-cat {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.encabezado-cat h2 {
+    font-size: 2.8rem;
+    color: var(--verde-oscuro);
+    margin-bottom: 10px;
+}
+
+.encabezado-cat p {
+    color: var(--gris-texto);
+    font-size: 1.2rem;
+}
+
+/* Cuadrícula interactiva */
+.grid-interactivo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+}
+
+/* Tarjetas individuales */
+.tarjeta-cat {
+    background-color: white;
+    width: 260px;
+    height: 260px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--verde-oscuro);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación suave de rebote */
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.icono-cat i {
+    font-size: 5rem;
+    margin-bottom: 15px;
+    transition: transform 0.4s;
+}
+
+.tarjeta-cat h3 {
+    font-size: 1.8rem;
+    font-weight: normal;
+    transition: transform 0.4s;
+}
+
+.info-oculta {
+    position: absolute;
+    bottom: -50px; /* Escondido abajo por defecto */
+    background-color: var(--salmon-boton);
+    color: var(--negro-texto);
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* EL EFECTO INTERACTIVO AL PASAR EL RATÓN */
+.tarjeta-cat:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-color: var(--verde-medio);
+}
+
+.tarjeta-cat:hover .icono-cat i {
+    transform: scale(1.1) translateY(-10px);
+}
+
+.tarjeta-cat:hover h3 {
+    transform: translateY(-10px);
+}
+
+.tarjeta-cat:hover .info-oculta {
+    bottom: 0; /* Sube la barrita de color salmón */
+    opacity: 1;
+}
+
+/* ========================================= */
+/* --- PANTALLA DE SUBCATEGORÍAS ----------- */
+/* ========================================= */
+
+.fondo-claro {
+    background-color: var(--blanco-fondo);
+}
+
+/* Modificador para que la barra de navegación sea visible en fondos blancos */
+.navbar-principal.barra-oscura {
+    position: relative; /* Ya no flota sobre una imagen */
+    background-color: var(--verde-oscuro);
+    padding: 20px 50px;
+}
+
+.contenedor-subcategorias {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.enlace-regresar {
+    display: inline-block;
+    color: var(--gris-texto);
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 40px;
+    transition: color 0.3s;
+}
+
+.enlace-regresar:hover {
+    color: var(--salmon-boton);
+}
+
+.encabezado-sencillo h2 {
+    font-size: 2.5rem;
+    color: var(--verde-oscuro);
+    font-weight: normal;
+}
+
+.divisor-pequeno {
+    width: 40px;
+    height: 3px;
+    background-color: var(--salmon-boton);
+    margin: 15px 0 20px 0;
+}
+
+.encabezado-sencillo p {
+    color: var(--gris-texto);
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+/* Cuadrícula para las subdivisiones */
+.grid-subcategorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Diseño minimalista de la tarjeta de subdivisión */
+/* Diseño mejorado de la tarjeta de subdivisión */
+.tarjeta-sub {
+    background-color: #fff;
+    border: 1px solid #eaeaea;
+    border-left: 5px solid var(--salmon-boton); /* Acento de color lateral */
+    padding: 25px 30px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--negro-texto);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04); /* Sombra un poquito más visible */
+}
+
+.info-izq {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Separación entre el ícono y el texto */
+}
+
+.icono-principal {
+    font-size: 1.5rem;
+    color: var(--verde-medio); /* Color verde para el ícono de la huellita/hoja */
+    opacity: 0.8;
+}
+
+.nombre-sub {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--verde-oscuro);
+}
+
+.icono-flecha {
+    color: var(--salmon-boton); /* Flecha con color para llamar la atención */
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+}
+
+/* Efecto Hover */
+.tarjeta-sub:hover {
+    border-color: var(--salmon-boton);
+    box-shadow: 0 10px 20px rgba(229, 152, 129, 0.2);
+    transform: translateY(-4px);
+}
+
+.tarjeta-sub:hover .icono-flecha {
+    transform: translateX(8px);
+}
+
+/* ========================================= */
+/* --- DISEÑO DE FICHAS (CARRUSEL) -------- */
+/* ========================================= */
+
+.contenedor-fichas {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.carrusel-libro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.visor-especies {
+    flex: 1;
+    min-height: 500px;
+    position: relative;
+}
+
+.tarjeta-especie {
+    display: none; /* Ocultas por defecto */
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    animation: fadeSlide 0.5s ease-out;
+}
+
+.tarjeta-especie.activa {
+    display: flex; /* Se muestra como caja flexible */
+}
+
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.col-imagen {
+    width: 55%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.col-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.col-imagen:hover img {
+    transform: scale(1.05);
+}
+
+.clic-overlay {
+    position: absolute;
+    bottom: 0; width: 100%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.col-imagen:hover .clic-overlay { opacity: 1; }
+
+.col-texto {
+    width: 45%;
+    padding: 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tag-estado {
+    background: var(--salmon-boton);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+
+.divisor-fichas {
+    width: 50px; height: 3px;
+    background: var(--verde-medio);
+    margin: 20px 0;
+}
+
+.resumen-corto { color: var(--gris-texto); margin-bottom: 20px; line-height: 1.6; }
+
+/* Botones de navegación */
+.flecha-nav {
+    background: var(--salmon-boton);
+    border: none;
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.flecha-nav:hover { background: var(--verde-oscuro); transform: scale(1.1); }
+
+.contador-paginas { margin-top: 30px; color: var(--gris-texto); font-weight: bold; }
+
+/* ========================================= */
+/* --- VENTANA EMERGENTE (MODAL) ---------- */
+/* ========================================= */
+
+.modal-info {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(8px);
+}
+
+.modal-contenido-fichas {
+    background: white;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-grid { display: flex; }
+
+.m-col-img { width: 50%; height: 600px; }
+.m-col-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.m-col-data { width: 50%; padding: 50px; overflow-y: auto; }
+
+.scroll-texto {
+    height: 300px;
+    overflow-y: auto;
+    margin-top: 20px;
+    line-height: 1.7;
+    color: var(--gris-texto);
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 20px; right: 30px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #999;
+}
+
+/* ========================================= */
+/* --- MAPA CARTOGRÁFICO REAL PETÉN --------- */
+/* ========================================= */
+
+.contenedor-mapa.real-peten {
+    max-width: 1300px; /* Un poco más ancho para la silueta real */
+    margin: 60px auto;
+}
+
+.encabezado-mapa h2 {
+    font-size: 3rem;
+    color: var(--verde-oscuro);
+}
+
+.layout-mapa {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start; /* Alinea los paneles arriba */
+}
+
+/* Columna Izquierda: Mapa SVG Real */
+.col-mapa-svg.cartografia-real {
+    width: 65%;
+    background: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+
+.mapa-peten-real {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.08));
+}
+
+.zona-interactiva {
+    /* Mantenemos el color verde medio que definimos para tus tarjetas */
+    fill: #4f6f52; 
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover y Activo en el Mapa Real */
+.zona-interactiva:hover {
+    fill: var(--salmon-boton); /* Color salmón al hover */
+    transform: scale(1.02);
+}
+
+.zona-interactiva.zona-activa {
+    fill: var(--verde-oscuro); /* Verde oscuro para la zona seleccionada */
+}
+
+.texto-mapa-real {
+    fill: white;
+    font-size: 20px; /* Un poco más grande para el mapa real */
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* Columna Derecha: Panel de Datos Real */
+.col-panel-datos.panel-real {
+    width: 35%;
+}
+
+.tarjeta-datos {
+    background: white;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+
+.tarjeta-datos h3 {
+    font-size: 2.2rem;
+    color: var(--verde-oscuro);
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+/* Estilos para las barras de porcentaje (se mantienen) */
+.estadistica {
+    margin-bottom: 30px;
+}
+
+.estadistica span {
+    font-weight: bold;
+    color: var(--gris-texto);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.barra-progreso {
+    width: 100%;
+    height: 15px;
+    background: #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progreso-fill {
+    height: 100%;
+    background: #388e3c; /* Verde para el bosque */
+    width: 0%;
+    transition: width 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.progreso-fill.peligro {
+    background: #d32f2f; /* Rojo para las amenazas */
+}
+
+#visual-datos p {
+    font-size: 1.1rem;
+    color: var(--negro-texto);
+    margin-bottom: 15px;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 1000px) {
+    .layout-mapa {
+        flex-direction: column;
+    }
+    .col-mapa-svg.cartografia-real, .col-panel-datos.panel-real {
+        width: 100%;
+    }
+}
+
+/* Estilos extra para el index */
+.botones-inicio {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-mapa-inicio {
+    padding: 15px 30px;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.btn-mapa-inicio:hover {
+    background: white;
+    color: var(--verde-oscuro);
+}
+
+.mini-features {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.feat i {
+    display: block;
+    font-size: 2rem;
+    color: var(--verde-medio);
+    margin-bottom: 10px;
+}
+
+.feat span {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--gris-texto);
+}
+
+
+/* Limpia los bordes y rellenos por defecto que traía el SVG */
+.col-mapa-svg svg {
+    background: transparent !important;
+}
+
+/* Estilo base moderno para todos los municipios */
+.col-mapa-svg svg path {
+    fill: #f4f6f7 !important; /* Gris ultra claro y limpio */
+    stroke: #2a5a3b !important; /* Verde oscuro elegante para los bordes */
+    stroke-width: 1px !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efecto al pasar el mouse por encima (Hover) */
+.col-mapa-svg svg path:hover {
+    fill: #8fc2a1 !important; /* Verde suave al pasar el mouse */
+    transform: translateY(-2px); /* Pequeño salto hacia arriba */
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); /* Sombra sutil y moderna */
+}
+
+/* El estilo de la zona seleccionada (el que ya tienes en tu JS) */
+.col-mapa-svg svg path.zona-activa {
+    fill: #2a5a3b !important; /* Verde oscuro fijo al hacer clic */
+}
+
+/* =========================================
+   ESTRUCTURA GENERAL Y LAYOUT (COMPACTO)
+   ========================================= */
+.contenedor-mapa {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px; /* Reducimos el padding superior para subir todo */
+}
+
+.encabezado-mapa {
+    text-align: center;
+    margin-bottom: 25px; /* Menos espacio en blanco debajo del título */
+}
+
+.layout-mapa {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* Alineación perfecta al centro vertical */
+    justify-content: center;
+    gap: 50px; /* Acercamos un poco la tarjeta al mapa */
+}
+
+/* =========================================
+   COLUMNA DEL MAPA (TAMAÑO IDEAL SIN SCROLL)
+   ========================================= */
+.col-mapa-svg {
+    flex: 1 1 450px;
+    display: flex;
+    justify-content: center;
+}
+
+.col-mapa-svg svg {
+    width: 100%;
+    max-width: 550px; /* Reducimos el ancho máximo */
+    max-height: 65vh; /* CLAVE: El mapa nunca superará el 65% del alto de la pantalla */
+    display: block;
+    overflow: visible;
+}
+
+/* =========================================
+   COLUMNA DE LA TARJETA Y SU DISEÑO
+   ========================================= */
+.col-panel-datos {
+    flex: 1 1 350px;
+    max-width: 450px; /* Evita que la tarjeta sea más ancha que el mapa */
+}
+
+.tarjeta-datos {
+    background: #ffffff;
+    border-radius: 16px; /* Bordes un poco más sutiles */
+    padding: 35px; /* Reducimos el relleno interno para que la tarjeta sea menos alta */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); /* Sombra moderna y suave */
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
