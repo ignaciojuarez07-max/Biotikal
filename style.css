@@ -913,3 +913,46 @@ body {
         padding: 5px;
     }
 }
+
+
+/* --- PROTECCIÓN PARA TODOS LOS DISPOSITIVOS --- */
+html, body {
+    overflow-x: hidden; /* Evita que la página se mueva de lado a lado */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fuerza a todas las imágenes a no exceder el ancho del contenedor */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- DISEÑO RESPONSIVO REAL --- */
+@media screen and (max-width: 480px) {
+    /* Ajuste de contenedores para pantallas muy pequeñas */
+    .contenedor-fichas, .visor-especies, .modal-contenido-fichas {
+        width: 95% !important;
+        margin: 0 auto !important;
+        padding: 5px !important;
+    }
+
+    /* Asegurar que las tarjetas no se salgan del borde */
+    .tarjeta-especie {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Fuentes más legibles en móvil */
+    h2 { font-size: 1.5rem !important; }
+    p { font-size: 1rem !important; }
+}
+
+/* Tablets y pantallas medianas */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+    .contenedor-fichas {
+        width: 90%;
+    }
+}
