@@ -861,98 +861,311 @@ body {
 }
 
 
-/* =========================================
-   DISEÑO MÓVIL EXACTO PARA BIOTIKAL
-   ========================================= */
-@media screen and (max-width: 768px) {
-    
-    /* 1. Fichas: Apilar imagen arriba y texto abajo */
-    .tarjeta-especie {
-        display: flex;
-        flex-direction: column; /* Cambia de lado-a-lado a arriba-abajo */
-        height: auto; 
-        padding: 10px;
-    }
-    
-    .col-imagen, .col-texto {
-        width: 100%; /* Que ocupen todo el ancho de la pantalla */
-        padding: 5px 0;
-    }
+/* =====================================================
+   RESPONSIVE GLOBAL BIOTIKAL
+   PEGAR AL FINAL DEL STYLE.CSS
+===================================================== */
 
-    .col-imagen img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
-
-    /* 2. Subcategorías: Menú en una sola columna limpia */
-    .grid-subcategorias {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    /* 3. Modal (Detalles extra): Evitar que se aplaste al abrirlo */
-    .modal-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .m-col-img, .m-col-data {
-        width: 100%;
-    }
-
-    /* 4. Ajustes generales de lectura */
-    .col-texto h2 {
-        font-size: 22px;
-        text-align: center;
-    }
-    
-    .carrusel-libro {
-        padding: 5px;
-    }
-}
-
-
-/* --- PROTECCIÓN PARA TODOS LOS DISPOSITIVOS --- */
-html, body {
-    overflow-x: hidden; /* Evita que la página se mueva de lado a lado */
+/* Evita scroll horizontal */
+html,
+body {
     width: 100%;
-    margin: 0;
-    padding: 0;
+    overflow-x: hidden;
 }
 
-/* Fuerza a todas las imágenes a no exceder el ancho del contenedor */
-img {
+/* Ajuste universal */
+* {
+    box-sizing: border-box;
+}
+
+/* Imágenes y SVG responsivos */
+img,
+svg,
+video {
     max-width: 100%;
     height: auto;
     display: block;
 }
 
-/* --- DISEÑO RESPONSIVO REAL --- */
-@media screen and (max-width: 480px) {
-    /* Ajuste de contenedores para pantallas muy pequeñas */
-    .contenedor-fichas, .visor-especies, .modal-contenido-fichas {
-        width: 95% !important;
-        margin: 0 auto !important;
-        padding: 5px !important;
+/* =========================================
+   TABLETS Y CELULARES
+========================================= */
+@media (max-width: 768px) {
+
+    /* -------------------------
+       NAVBAR
+    ------------------------- */
+
+    .navbar-principal {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
     }
 
-    /* Asegurar que las tarjetas no se salgan del borde */
-    .tarjeta-especie {
-        width: 100% !important;
-        box-sizing: border-box;
+    .logo-nav {
+        font-size: 1.2rem;
+        letter-spacing: 3px;
     }
 
-    /* Fuentes más legibles en móvil */
-    h2 { font-size: 1.5rem !important; }
-    p { font-size: 1rem !important; }
+    .enlaces-nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .enlaces-nav a {
+        font-size: 0.85rem;
+    }
+
+    /* -------------------------
+       HERO
+    ------------------------- */
+
+    .bienvenida {
+        padding: 20px;
+    }
+
+    .bienvenida-box h1 {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        letter-spacing: 4px;
+        line-height: 1.1;
+    }
+
+    .frase-motivadora {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .botones-inicio {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-explorar,
+    .btn-mapa-inicio {
+        width: 90%;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    /* -------------------------
+       INTRODUCCIÓN
+    ------------------------- */
+
+    .introduccion {
+        padding: 60px 20px;
+    }
+
+    .introduccion h2 {
+        font-size: 2rem;
+    }
+
+    .introduccion p {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    /* -------------------------
+       CATEGORÍAS
+    ------------------------- */
+
+    .grid-interactivo {
+        gap: 20px;
+    }
+
+    .tarjeta-cat {
+        width: 100%;
+        max-width: 320px;
+        height: 220px;
+    }
+
+    .icono-cat i {
+        font-size: 3.5rem;
+    }
+
+    .tarjeta-cat h3 {
+        font-size: 1.4rem;
+    }
+
+    /* -------------------------
+       SUBCATEGORÍAS
+    ------------------------- */
+
+    .grid-subcategorias {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-sub {
+        padding: 20px;
+    }
+
+    .nombre-sub {
+        font-size: 1rem;
+    }
+
+    /* -------------------------
+       FICHAS DE ESPECIES
+    ------------------------- */
+
+    .contenedor-fichas {
+        padding: 0 10px;
+    }
+
+    .carrusel-libro {
+        gap: 10px;
+    }
+
+    .visor-especies {
+        min-height: auto;
+    }
+
+    .tarjeta-especie.activa {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .col-imagen {
+        width: 100%;
+        height: 280px;
+    }
+
+    .col-imagen img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .col-texto {
+        width: 100%;
+        padding: 25px;
+        text-align: center;
+    }
+
+    .tag-estado {
+        margin: 0 auto 15px auto;
+    }
+
+    .divisor-fichas {
+        margin: 15px auto;
+    }
+
+    .col-texto h2 {
+        font-size: 1.8rem;
+    }
+
+    .resumen-corto {
+        font-size: 0.95rem;
+    }
+
+    /* -------------------------
+       BOTONES DEL CARRUSEL
+    ------------------------- */
+
+    .flecha-nav {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    /* -------------------------
+       MODAL
+    ------------------------- */
+
+    .modal-contenido-fichas {
+        width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-grid {
+        flex-direction: column;
+    }
+
+    .m-col-img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .m-col-data {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .scroll-texto {
+        height: auto;
+        max-height: 250px;
+    }
+
+    /* -------------------------
+       MAPA PETÉN
+    ------------------------- */
+
+    .layout-mapa {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .col-mapa-svg,
+    .col-panel-datos,
+    .col-mapa-svg.cartografia-real,
+    .col-panel-datos.panel-real {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .col-mapa-svg svg {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .tarjeta-datos {
+        padding: 25px;
+    }
+
+    .tarjeta-datos h3 {
+        font-size: 1.8rem;
+    }
+
+    /* -------------------------
+       FEATURES
+    ------------------------- */
+
+    .mini-features {
+        flex-direction: column;
+        gap: 25px;
+    }
 }
 
-/* Tablets y pantallas medianas */
-@media screen and (min-width: 481px) and (max-width: 1024px) {
-    .contenedor-fichas {
-        width: 90%;
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+@media (max-width: 480px) {
+
+    .bienvenida-box h1 {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+
+    .encabezado-cat h2,
+    .encabezado-sencillo h2,
+    .encabezado-mapa h2,
+    .introduccion h2 {
+        font-size: 1.8rem;
+    }
+
+    .tarjeta-datos h3 {
+        font-size: 1.5rem;
+    }
+
+    .col-texto {
+        padding: 20px;
+    }
+
+    .flecha-nav {
+        width: 40px;
+        height: 40px;
     }
 }
