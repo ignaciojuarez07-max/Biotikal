@@ -1,14 +1,10 @@
 <?php
 // conexion.php
 
-// 1. Pega aquí el NUEVO host que tiene la palabra "pooler"
-$host = 'aws-1-us-east-1.pooler.supabase.com'; 
-
+$host = 'aws-0-us-east-1.pooler.supabase.com'; 
 $dbname = 'postgres'; 
-$username = 'postgres'; // OJO: a veces en el pooler el usuario cambia un poco (revisa si en la ventanita te agregó el nombre del proyecto al usuario)
+$username = 'postgres.koltwkcxjijbqvctovnn'; 
 $password = 'BioTikal2026'; 
-
-// 2. CAMBIA EL PUERTO A 6543
 $port = '6543'; 
 
 try {
