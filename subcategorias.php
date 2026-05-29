@@ -25,6 +25,7 @@ if ($categoria == 'plantas') $icono_cat = 'fas fa-leaf';
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BioTikal | Familias de <?php echo ucfirst($categoria); ?></title>
