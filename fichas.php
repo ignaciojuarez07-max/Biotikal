@@ -40,30 +40,33 @@ $especies = $stmt->fetchAll();
 
             <div class="visor-especies">
                 <?php foreach ($especies as $index => $sp): 
-                    // Generamos las diferentes combinaciones de nombres
+                    // Generamos las combinaciones de nombres (mayúsculas y minúsculas)
                     $cientifico = str_replace(' ', '_', $sp['nombre_cientifico']);
                     $minusculas = strtolower($cientifico);
                     $mayuscula = ucfirst($minusculas); 
 
-                    // El "radar" ahora busca obligatoriamente DENTRO de "img/"
+                    // El súper radar: busca DENTRO de img/ Y también AFUERA en la raíz
                     $posibles_rutas = [
-                        "img/" . $minusculas . ".jpg", 
-                        "img/" . $minusculas . ".JPG", 
-                        "img/" . $minusculas . ".png", 
-                        "img/" . $minusculas . ".PNG", 
-                        "img/" . $mayuscula . ".jpg", 
-                        "img/" . $mayuscula . ".JPG", 
-                        "img/" . $mayuscula . ".png", 
-                        "img/" . $mayuscula . ".PNG", 
-                        "img/" . $cientifico . ".jpg", 
-                        "img/" . $cientifico . ".png"
+                        // 1. Probar dentro de la carpeta "img"
+                        "img/" . $minusculas . ".jpg", "img/" . $minusculas . ".JPG", 
+                        "img/" . $minusculas . ".png", "img/" . $minusculas . ".PNG", 
+                        "img/" . $mayuscula . ".jpg", "img/" . $mayuscula . ".JPG", 
+                        "img/" . $mayuscula . ".png", "img/" . $mayuscula . ".PNG", 
+                        "img/" . $cientifico . ".jpg", "img/" . $cientifico . ".png", "img/" . $cientifico . ".PNG",
+
+                        // 2. Probar afuera (por si se quedaron en la carpeta principal)
+                        $minusculas . ".jpg", $minusculas . ".JPG", 
+                        $minusculas . ".png", $minusculas . ".PNG", 
+                        $mayuscula . ".jpg", $mayuscula . ".JPG", 
+                        $mayuscula . ".png", $mayuscula . ".PNG", 
+                        $cientifico . ".jpg", $cientifico . ".png", $cientifico . ".PNG"
                     ];
 
                     $ruta_final = ""; 
                     foreach ($posibles_rutas as $ruta) {
                         if (file_exists($ruta)) {
                             $ruta_final = $ruta;
-                            break; 
+                            break; // En cuanto encuentre la foto en cualquier lado, se detiene
                         }
                     }
                 ?>
