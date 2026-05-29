@@ -9,7 +9,7 @@ $username = 'postgres'; // OJO: a veces en el pooler el usuario cambia un poco (
 $password = 'BioTikal2026'; 
 
 // 2. CAMBIA EL PUERTO A 6543
-$port = '5432'; 
+$port = '6543'; 
 
 try {
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
