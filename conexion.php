@@ -5,11 +5,11 @@
 $host = 'db.koltwkcxjijbqvctovnn.supabase.co'; 
 
 $dbname = 'postgres'; 
-$username = 'postgres.xxxxxxxx'; // OJO: a veces en el pooler el usuario cambia un poco (revisa si en la ventanita te agregó el nombre del proyecto al usuario)
+$username = 'postgres'; // OJO: a veces en el pooler el usuario cambia un poco (revisa si en la ventanita te agregó el nombre del proyecto al usuario)
 $password = 'BioTikal2026'; 
 
 // 2. CAMBIA EL PUERTO A 6543
-$port = '6543'; 
+$port = '5432'; 
 
 try {
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
